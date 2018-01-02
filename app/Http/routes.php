@@ -1,5 +1,9 @@
 <?php
 
+header('Access-Control-Allow-Origin:  *');
+header('Access-Control-Allow-Methods:  POST, GET, OPTIONS, PUT, DELETE');
+header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Authorization');
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -11,46 +15,20 @@
 |
 */
 
-use App\Task;
 use Illuminate\Http\Request;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\ExpensesCategoryController;
 
-Route::group(['middleware' => ['web']], function () {
+// Route::group(['middleware' => ['web']], function () {
     /**
      * Show Task Dashboard
      */
-    Route::get('/', function () {
-        return view('tasks', [
-            'tasks' => Task::orderBy('created_at', 'asc')->get()
-        ]);
-    });
+    Route::get('/', 'TaskController@getTasks');
+    Route::post('/task', 'TaskController@addTasks');
+    Route::delete('/task/{id}', 'TaskController@deleteTasks');
 
-    /**
-     * Add New Task
-     */
-    Route::post('/task', function (Request $request) {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|max:255',
-        ]);
-
-        if ($validator->fails()) {
-            return redirect('/')
-                ->withInput()
-                ->withErrors($validator);
-        }
-
-        $task = new Task;
-        $task->name = $request->name;
-        $task->save();
-
-        return redirect('/');
-    });
-
-    /**
-     * Delete Task
-     */
-    Route::delete('/task/{id}', function ($id) {
-        Task::findOrFail($id)->delete();
-
-        return redirect('/');
-    });
-});
+    Route::get('/categories', 'ExpensesCategoryController@getCategories');
+    Route::post('/categories', 'ExpensesCategoryController@addCategories');
+    Route::post('/categories/update', 'ExpensesCategoryController@updateCategories');
+    Route::get('/categories/delete/{id}', 'ExpensesCategoryController@deleteCategories');
+// });
