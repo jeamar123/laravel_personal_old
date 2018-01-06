@@ -18,6 +18,7 @@ header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Autho
 use Illuminate\Http\Request;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ExpensesCategoryController;
+use App\Http\Controllers\ExpensesController;
 
 // Route::group(['middleware' => ['web']], function () {
     /**
@@ -31,4 +32,9 @@ use App\Http\Controllers\ExpensesCategoryController;
     Route::post('/categories', 'ExpensesCategoryController@addCategories');
     Route::post('/categories/update', 'ExpensesCategoryController@updateCategories');
     Route::get('/categories/delete/{id}', 'ExpensesCategoryController@deleteCategories');
+
+    Route::get('/expenses', 'ExpensesController@getExpenses');
+    Route::post('/expenses', 'ExpensesController@addExpenses');
+    Route::post('/expenses/update', 'ExpensesController@updateExpenses');
+    Route::get('/expenses/delete/{id}', 'ExpensesController@deleteExpenses');
 // });
