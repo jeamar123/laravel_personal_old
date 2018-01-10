@@ -32,12 +32,12 @@ class ExpensesController extends Controller
 
         $object = array();
         $data = Expenses::create([
+                    // 'category_id' => $request->get('category_id'),   
+                    'category' => $request->get('category_name'),
                     'date' => $request->get('date'),
-                    'category' => $request->get('category'),
                     'description' => $request->get('description'),
                     'value' => $request->get('value'),
                 ]);
-
         if( $data )
         {
             $object['status'] = TRUE;
