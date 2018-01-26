@@ -34,6 +34,7 @@ use App\Http\Controllers\ExpensesController;
     Route::get('/categories/delete/{id}', 'ExpensesCategoryController@deleteCategories');
 
     Route::get('/expenses', 'ExpensesController@getExpenses');
+    Route::post('/expenses/month', 'ExpensesController@getExpensesByMonth');
     Route::post('/expenses', 'ExpensesController@addExpenses');
     Route::post('/expenses/update', 'ExpensesController@updateExpenses');
     Route::get('/expenses/delete/{id}', 'ExpensesController@deleteExpenses');

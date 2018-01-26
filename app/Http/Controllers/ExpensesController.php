@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
+use DateTime;
 use App\Expenses;
 
 class ExpensesController extends Controller
@@ -22,6 +23,11 @@ class ExpensesController extends Controller
         // return view('tasks', [
         //     'tasks' => Task::orderBy('created_at', 'asc')->get()
         // ]);
+    }
+
+    public function getExpensesByMonth( Request $request )
+    {
+        return Expenses::whereBetween('date', [ new DateTime( $request->get('start') ) , new DateTime( $request->get('end') ) ])->get();
     }
 
     public function addExpenses( Request $request )
