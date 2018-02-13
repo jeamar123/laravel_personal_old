@@ -24,9 +24,9 @@ use App\Http\Controllers\ExpensesController;
     /**
      * Show Task Dashboard
      */
-    Route::get('/', 'TaskController@getTasks');
-    Route::post('/task', 'TaskController@addTasks');
-    Route::delete('/task/{id}', 'TaskController@deleteTasks');
+    Route::get('/', 'HomeController@getHomeView');
+    // Route::post('/task', 'TaskController@addTasks');
+    // Route::delete('/task/{id}', 'TaskController@deleteTasks');
 
     Route::get('/categories', 'ExpensesCategoryController@getCategories');
     Route::post('/categories', 'ExpensesCategoryController@addCategories');
