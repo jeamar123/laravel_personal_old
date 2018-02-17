@@ -120,6 +120,15 @@ body,html{
     overflow-y: auto;
   }
 
+  .right-chat-container .right-body-section .user-list{
+    visibility: hidden;
+  }
+
+  .right-chat-container.move .right-body-section .user-list{
+    transition: all .5s ease-in-out .3s;
+    visibility: visible;
+  }
+
   .right-body-section .user-list .nav-item .img-wrapper{
     width: 40px;
     margin-right: 15px;
@@ -135,6 +144,14 @@ body,html{
 
 /* --------------------- */
 
+
+
+
+/* -------- EXPENSES -------- */
+
+.expenses-content{
+  padding: 20px;
+}
 
 
 
