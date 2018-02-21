@@ -134,7 +134,21 @@ app.config(function($stateProvider, $urlRouterProvider){
           templateUrl: '../assets/expenses/templates/right-content.html'
         }
       },
+    })
+    .state('map', {
+      url: '/map',
+      views: {
+        'header': {
+          templateUrl: '../assets/expenses/templates/header.html'
+        },
+        'main': {
+          templateUrl: '../assets/expenses/templates/map.html'
+        },
+        'rightContent': {
+          templateUrl: '../assets/expenses/templates/right-content.html'
+        }
+      },
     });
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/map');
 });

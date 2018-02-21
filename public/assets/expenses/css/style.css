@@ -154,6 +154,34 @@ body,html{
 }
 
 
+/* -------- MAP -------- */
+
+#map {
+  height: 500px;
+  width: 100%;
+  border:1px solid #ccc;
+}
+
+.geo-container{
+  padding: 15px 20px;
+  /*display: inline-block;*/
+}
+
+.notif-container .white-box{
+  padding: 20px 15px;
+}
+
+.notif{
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.notif .img-wrapper{
+  /*width: 50px;*/
+  margin-right: 10px;
+}
+
+
 
 /*-------------------------*/
 
@@ -171,7 +199,7 @@ body,html{
 
 *::-webkit-scrollbar-thumb
 {
-    background-color: #000;
+    background-color: #ccc;
     
     /*background-image: -webkit-gradient(linear, 0 0, 0 100%,*/
                        /*color-stop(.5, rgba(255, 255, 255, .2)),*/

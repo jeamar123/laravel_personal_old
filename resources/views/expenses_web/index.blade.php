@@ -38,5 +38,10 @@
   <script type="text/javascript" src="<?php echo $server; ?>/assets/expenses/js/angular-ui-router.min.js"></script>
   <script type="text/javascript" src="<?php echo $server; ?>/assets/expenses/js/angular-local-storage.min.js"></script>
   <script type="text/javascript" src="<?php echo $server; ?>/assets/expenses/process/app.js"></script>
+
   <script type="text/javascript" src="<?php echo $server; ?>/assets/expenses/process/controllers/mainController.js"></script>
+
+  <script type="text/javascript" src="<?php echo $server; ?>/assets/expenses/process/directives/mapDirective.js"></script>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOzaOYgvdwnATwVIvSpYixj32rTLbVF3k"></script>
 </html>

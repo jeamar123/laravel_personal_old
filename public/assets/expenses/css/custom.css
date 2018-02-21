@@ -592,7 +592,7 @@ input,textarea,button{
 
 .white-box{
     background-color: #FFF;
-    box-shadow: 1px 1px 10px #736e6e;
+    box-shadow: 1px 1px 10px #c1c1c1;
     min-height: 300px;
     width: 100%;
     padding: 20px;
