@@ -21,6 +21,92 @@ app.factory('serverUrl',[
     }
 ]);
 
+app.config(function($stateProvider, $urlRouterProvider){
+
+  $stateProvider
+    .state('auth', {
+      url: '/auth',
+      views: {
+        'main': {
+          templateUrl: '../assets/main/templates/auth.html'
+        }
+      },
+    })
+    .state('home', {
+      url: '/',
+      views: {
+        'header': {
+          templateUrl: '../assets/main/templates/header.html'
+        },
+        'main': {
+          templateUrl: '../assets/main/templates/wall.html'
+        },
+        'rightContent': {
+          templateUrl: '../assets/main/templates/right-content.html'
+        }
+      },
+    })
+    .state('expenses', {
+      url: '/expenses',
+      views: {
+        'header': {
+          templateUrl: '../assets/main/templates/header.html'
+        },
+        'main': {
+          templateUrl: '../assets/main/templates/expenses.html'
+        },
+        'rightContent': {
+          templateUrl: '../assets/main/templates/right-content.html'
+        }
+      },
+    })
+    .state('messages', {
+      url: '/messages',
+      views: {
+        'header': {
+          templateUrl: '../assets/main/templates/header.html'
+        },
+        'main': {
+          templateUrl: '../assets/main/templates/messages.html'
+        },
+        'rightContent': {
+          templateUrl: '../assets/main/templates/right-content.html'
+        }
+      },
+    })
+    .state('map', {
+      url: '/map',
+      views: {
+        'header': {
+          templateUrl: '../assets/main/templates/header.html'
+        },
+        'main': {
+          templateUrl: '../assets/main/templates/map.html'
+        },
+        'rightContent': {
+          templateUrl: '../assets/main/templates/right-content.html'
+        }
+      },
+    })
+    .state('user-settings', {
+      url: '/user-settings',
+      views: {
+        'header': {
+          templateUrl: '../assets/main/templates/header.html'
+        },
+        'main': {
+          templateUrl: '../assets/main/templates/user-settings.html'
+        },
+        'rightContent': {
+          templateUrl: '../assets/main/templates/right-content.html'
+        }
+      },
+    });
+
+    $urlRouterProvider.otherwise('/map');
+});
+
+
 app.directive('validNumber', function() {
   return {
     require: '?ngModel',
@@ -102,53 +188,4 @@ app.filter('toArray', function () {
       });
     }
   };
-});
-
-app.config(function($stateProvider, $urlRouterProvider){
-
-  $stateProvider
-    .state('home', {
-      url: '/',
-      views: {
-        'header': {
-          templateUrl: '../assets/expenses/templates/header.html'
-        },
-        'main': {
-          templateUrl: '../assets/expenses/templates/wall.html'
-        },
-        'rightContent': {
-          templateUrl: '../assets/expenses/templates/right-content.html'
-        }
-      },
-    })
-    .state('expenses', {
-      url: '/expenses',
-      views: {
-        'header': {
-          templateUrl: '../assets/expenses/templates/header.html'
-        },
-        'main': {
-          templateUrl: '../assets/expenses/templates/expenses.html'
-        },
-        'rightContent': {
-          templateUrl: '../assets/expenses/templates/right-content.html'
-        }
-      },
-    })
-    .state('map', {
-      url: '/map',
-      views: {
-        'header': {
-          templateUrl: '../assets/expenses/templates/header.html'
-        },
-        'main': {
-          templateUrl: '../assets/expenses/templates/map.html'
-        },
-        'rightContent': {
-          templateUrl: '../assets/expenses/templates/right-content.html'
-        }
-      },
-    });
-
-    $urlRouterProvider.otherwise('/map');
 });

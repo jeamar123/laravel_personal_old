@@ -23,7 +23,7 @@ class HomeController extends Controller
         $now = new \DateTime();
         $data['date'] = $now;
 
-        return view('expenses_web.index', $data);
+        return view('main_web.index', $data);
 
         // return view('expenses_web.index', [
             // 'tasks' => Task::orderBy('created_at', 'asc')->get()

@@ -16,17 +16,21 @@ app.directive('mapDirective', [
         var infoWindow;
         var currentPositionMarker ;
         var myLatlng;
-        var infowindow = [];
+        var markers;
+        var infowindow;
 
-        var markers = [];
-        var directionsRenderer = [];
-        var selected_notif_arr = [];
+        var selected_notif_arr;
 
+        var directionsRenderer = new google.maps.DirectionsRenderer({
+          draggable: true,
+          map: map,
+          suppressMarkers: true
+        });
         var directionsService = new google.maps.DirectionsService();
         var directionsMatrixservice = new google.maps.DistanceMatrixService();
 
-
         scope.active_notif = [];
+        scope.notif_active = null;
 
         scope.notif_list = [
           {
@@ -65,39 +69,31 @@ app.directive('mapDirective', [
 
         scope.selectNotif = ( notif ) =>{
           // console.log(notif);
-          var checkActive = $.inArray( notif.id, scope.active_notif );
-          // console.log(checkActive);
-          if( checkActive < 0 ){
-            notif.active = true;
-            selected_notif_arr.push(notif.latlng);
-            scope.active_notif.push(notif.id);
+          if( scope.active_notif != notif.id ){
+            scope.notif_active = notif.id;
+            selected_notif_arr = notif.latlng;
+            scope.active_notif = notif.id;
             
-            scope.calcRoute(notif);
             scope.addMarker(notif);
             scope.addInfoWindow(notif);
+            scope.calcRoute(notif);
+
+            var bounds = new google.maps.LatLngBounds();
+            bounds.extend( currentPositionMarker.getPosition() );
+
+            bounds.extend(new google.maps.LatLng(selected_notif_arr.lat, selected_notif_arr.lng));
+
+            map.fitBounds(bounds);
             
           }else{
-            notif.active = false;
-            markers[checkActive].setMap(null);
-            markers.splice(checkActive,1);
-            directionsRenderer[checkActive].setMap(null);
-            directionsRenderer.splice(checkActive,1);
-            selected_notif_arr.splice(checkActive,1);
-            scope.active_notif.splice(checkActive,1);
-          }
-
-          var bounds = new google.maps.LatLngBounds();
-          bounds.extend( currentPositionMarker.getPosition() );
-
-          for (var i = 0; i < selected_notif_arr.length; i++) {
-            bounds.extend(new google.maps.LatLng(selected_notif_arr[i].lat, selected_notif_arr[i].lng));
-          }
-
-          map.fitBounds(bounds);
-
-          if( selected_notif_arr.length == 0 ){
+            scope.notif_active = false;
+            directionsRenderer.setMap(null);
+            markers.setMap(null);
+            selected_notif_arr = null;
+            scope.active_notif = null;
             map.setZoom(12);
           }
+
         }
 
 
@@ -112,18 +108,13 @@ app.directive('mapDirective', [
           };
           directionsService.route(request, function(result, status) {
             if (status == 'OK') {
-              console.log(result);
-              directionsRenderer[$.inArray( notif.id, scope.active_notif )] = new google.maps.DirectionsRenderer({
-                draggable: true,
-                map: map,
-                suppressMarkers: true
-              });
+              // console.log(result);
 
-              directionsRenderer[$.inArray( notif.id, scope.active_notif )].setMap(map);
-              directionsRenderer[$.inArray( notif.id, scope.active_notif )].setDirections(result);
+              directionsRenderer.setMap(map);
+              directionsRenderer.setDirections(result);
 
-              directionsRenderer[$.inArray( notif.id, scope.active_notif )].addListener('directions_changed', function() {
-                computeTotalDistance(directionsRenderer[$.inArray( notif.id, scope.active_notif )].getDirections());
+              directionsRenderer.addListener('directions_changed', function() {
+                
               });
             }
           });
@@ -138,14 +129,18 @@ app.directive('mapDirective', [
             // avoidHighways: Boolean,
             // avoidTolls: Boolean,
           }, function success(response, status) {
-            console.log(response);
+            // console.log(response);
           });
         }
 
         scope.addMarker = ( notif ) =>{
+          if( markers ){
+            markers.setMap(null);
+          }
+
           var position = new google.maps.LatLng(notif.latlng.lat, notif.latlng.lng);
           var imageIcon = {
-            url: 'assets/expenses/img/users/' + notif.icon,
+            url: 'assets/main/img/users/' + notif.icon,
             // This marker is 20 pixels wide by 32 pixels high.
             size: new google.maps.Size(50, 50),
             // The origin for this image is (0, 0).
@@ -154,7 +149,7 @@ app.directive('mapDirective', [
             anchor: new google.maps.Point(25, 50),
           };
 
-          markers[ $.inArray( notif.id, scope.active_notif ) ] = new google.maps.Marker({
+          markers = new google.maps.Marker({
             position: position,
             map: map,
             icon: imageIcon,
@@ -165,20 +160,13 @@ app.directive('mapDirective', [
         scope.addInfoWindow = ( notif ) =>{
           var contentString = notif.name + ` : ` + notif.message;
 
-          infowindow[ $.inArray( notif.id, scope.active_notif ) ] = new google.maps.InfoWindow({
+          infowindow = new google.maps.InfoWindow({
             content: contentString
           });
 
-          markers[ $.inArray( notif.id, scope.active_notif ) ].addListener('click', function() {
-            scope.closeAllInfoWindows();
-            infowindow[$.inArray( notif.id, scope.active_notif )].open(map, markers[ $.inArray( notif.id, scope.active_notif ) ]);
+          markers.addListener('click', function() {
+            infowindow[$.inArray( notif.id, scope.active_notif )].open(map, markers);
           });
-        }
-
-        scope.closeAllInfoWindows = ( ) =>{
-          for (var i = 0; i < infowindow.length; i++) {
-            infowindow[i].close();
-          }
         }
 
         scope.initMap = () => {

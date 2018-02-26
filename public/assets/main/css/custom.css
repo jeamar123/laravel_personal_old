@@ -598,3 +598,11 @@ input,textarea,button{
     width: 100%;
     padding: 20px;
 }
+
+
+
+/*---- LINE -----*/
+
+.line-height-1{
+    line-height: 1;
+}

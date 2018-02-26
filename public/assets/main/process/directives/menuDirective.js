@@ -3,8 +3,7 @@ app.directive('menuDirective', [
   '$state',
   '$stateParams',
   '$rootScope',
-  '$ionicSideMenuDelegate',
-  function directive($http,$state,$stateParams,$rootScope,$ionicSideMenuDelegate) {
+  function directive($http,$state,$stateParams,$rootScope) {
     return {
       restrict: "A",
       scope: true,
