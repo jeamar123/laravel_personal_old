@@ -32,6 +32,8 @@
     <div ui-view="rightContent"></div>
   </body>
 
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+
   <script type="text/javascript" src="<?php echo $server; ?>/assets/main/js/jquery.min.js"></script>
   <script type="text/javascript" src="<?php echo $server; ?>/assets/main/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="<?php echo $server; ?>/assets/main/js/angular.min.js"></script>
@@ -39,10 +41,15 @@
   <script type="text/javascript" src="<?php echo $server; ?>/assets/main/js/angular-local-storage.min.js"></script>
   <script type="text/javascript" src="<?php echo $server; ?>/assets/main/process/app.js"></script>
 
+
   <script type="text/javascript" src="<?php echo $server; ?>/assets/main/process/controllers/mainController.js"></script>
+
 
   <script type="text/javascript" src="<?php echo $server; ?>/assets/main/process/directives/authDirective.js"></script>
   <script type="text/javascript" src="<?php echo $server; ?>/assets/main/process/directives/mapDirective.js"></script>
+
+
+  <script type="text/javascript" src="<?php echo $server; ?>/assets/main/process/services/services.js"></script>
 
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOzaOYgvdwnATwVIvSpYixj32rTLbVF3k"></script>
 </html>

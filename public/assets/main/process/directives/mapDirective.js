@@ -3,7 +3,8 @@ app.directive('mapDirective', [
   '$state',
   '$stateParams',
   '$rootScope',
-  function directive($http,$state,$stateParams,$rootScope) {
+  'appModule',
+  function directive($http,$state,$stateParams,$rootScope,appModule) {
     return {
       restrict: "A",
       scope: true,
@@ -11,6 +12,7 @@ app.directive('mapDirective', [
       {
         console.log( "mapDirective Runinng !" );
 
+        var socket = io( 'http://handsomedev.com:8080' );
         var iconMarkerBase = 'https://maps.google.com/mapfiles/kml/shapes/';
         var map;
         var infoWindow;
@@ -96,8 +98,19 @@ app.directive('mapDirective', [
 
         }
 
+        scope.triggerNotif = ( ) =>{
+          var data = {
+            notif : 'Alert!'
+          }
+          console.log(data);
+          appModule.sendNotification( data )
+            .then(function(response){
+              console.log(response);
+            });
+          
+        }
 
-        //====== MAP INITIALIZATIONS =======//
+      //====== MAP INITIALIZATIONS =======//
 
         scope.calcRoute = ( notif ) =>{
 
@@ -217,7 +230,15 @@ app.directive('mapDirective', [
 
         scope.onLoad = ( ) =>{
           scope.initMap();
+
+          socket.on('notif', function(response) {
+            console.log(response);
+          });
         }
+
+      //=================================//
+
+        
 
         scope.onLoad();
 
