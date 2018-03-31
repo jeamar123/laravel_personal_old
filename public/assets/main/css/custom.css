@@ -251,12 +251,16 @@ input,textarea,button{
     padding-right: 0 !important;
 }
 
+.padding-5{
+    padding: 5px !important;
+}
+
 .padding-10{
-    padding: 10px;
+    padding: 10px !important; 
 }
 
 .padding-20{
-    padding: 20px;
+    padding: 20px !important;
 }
 
 .padding-top-50{
@@ -519,6 +523,10 @@ input,textarea,button{
     color: #555 !important;
 }
 
+.color-black-666{
+    color: #666 !important;
+}
+
 .color-white{
     color: #FFF !important;
 }
@@ -605,4 +613,11 @@ input,textarea,button{
 
 .line-height-1{
     line-height: 1;
+}
+
+
+/*------- POSTION -------*/
+
+.position-relative{
+  position: relative;
 }
