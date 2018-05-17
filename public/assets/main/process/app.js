@@ -14,7 +14,7 @@ app.run([ '$rootScope', '$state', '$stateParams', '$templateCache',
 
 app.factory('serverUrl',[
     function factory(){
-      var base_url = window.location.origin + '/admin/';
+      var base_url = window.location.origin + '/';
       return {
         url: base_url,
       }

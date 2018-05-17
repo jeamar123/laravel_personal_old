@@ -21,9 +21,10 @@ use App\Http\Controllers\ExpensesCategoryController;
 use App\Http\Controllers\ExpensesController;
 
 // Route::group(['middleware' => ['web']], function () {
-    /**
-     * Show Task Dashboard
-     */
+    
+    Route::post('/login', 'AuthController@login');
+    Route::post('/signup', 'AuthController@register');
+
     Route::get('/', 'HomeController@getHomeView');
     // Route::post('/task', 'TaskController@addTasks');
     // Route::delete('/task/{id}', 'TaskController@deleteTasks');

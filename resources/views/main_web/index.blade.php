@@ -47,6 +47,7 @@
 
   <script type="text/javascript" src="<?php echo $server; ?>/assets/main/process/directives/authDirective.js"></script>
   <script type="text/javascript" src="<?php echo $server; ?>/assets/main/process/directives/mapDirective.js"></script>
+  <script type="text/javascript" src="<?php echo $server; ?>/assets/main/process/directives/messagesDirective.js"></script>
 
 
   <script type="text/javascript" src="<?php echo $server; ?>/assets/main/process/services/services.js"></script>

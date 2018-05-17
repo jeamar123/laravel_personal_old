@@ -7,6 +7,15 @@ appService.factory('appModule', function( serverUrl, $http ){
     return $http.post('http://handsomedev.com:8080/api/notify', data);
   };
 
+  appFactory.loginUser = function( data ) {
+  	
+    return $http.post(serverUrl.url + 'login', data);
+  };
+
+  appFactory.signupUser = function( data ) {
+    return $http.post(serverUrl.url + 'signup', data);
+  };
+
   // appFactory.getExpensesPerMonth = function( data ) {
   //   return $http.post(serverUrl.url + 'expenses/month', data);
   // };
