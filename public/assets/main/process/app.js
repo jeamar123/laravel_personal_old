@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ui.router','appService']);
+var app = angular.module('app', ['ui.router','appService','chart.js']);
 
 app.run([ '$rootScope', '$state', '$stateParams', '$templateCache', 
   function ($rootScope, $state, $stateParams, $templateCache) {
@@ -103,7 +103,7 @@ app.config(function($stateProvider, $urlRouterProvider){
       },
     });
 
-    $urlRouterProvider.otherwise('/map');
+    $urlRouterProvider.otherwise('/expenses');
 });
 
 

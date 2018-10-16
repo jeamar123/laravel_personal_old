@@ -27,7 +27,20 @@ class ExpensesController extends Controller
 
     public function getExpensesByMonth( Request $request )
     {
-        return Expenses::whereBetween('date', [ new DateTime( $request->get('start') ) , new DateTime( $request->get('end') ) ])->get();
+        $data = array();
+
+        $get_expenses = Expenses::whereBetween('full_date', [ new DateTime( $request->get('start') ) , new DateTime( $request->get('end') ) ])->get();
+        
+        if( $get_expenses ){
+            $data['status'] = true;
+            $data['message'] = 'Success';
+            $data['expenses'] = $get_expenses;
+        }else{
+            $data['status'] = false;
+            $data['message'] = 'Failed';
+        }
+
+        return $data;
     }
 
     public function addExpenses( Request $request )

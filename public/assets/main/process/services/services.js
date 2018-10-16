@@ -16,9 +16,9 @@ appService.factory('appModule', function( serverUrl, $http ){
     return $http.post(serverUrl.url + 'signup', data);
   };
 
-  // appFactory.getExpensesPerMonth = function( data ) {
-  //   return $http.post(serverUrl.url + 'expenses/month', data);
-  // };
+  appFactory.getExpensesPerMonth = function( data ) {
+    return $http.post(serverUrl.url + 'expenses/month', data);
+  };
 
   return appFactory;
 });
